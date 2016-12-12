@@ -32,6 +32,7 @@ class Feedbacks extends AbstractMigration
         $table->addColumn('name', 'string')
             ->addColumn('email', 'string')
             ->addColumn('text', 'text')
+            ->addColumn('image', 'string', array('null' => true))
             ->addColumn('created', 'datetime', array('default' => 'CURRENT_TIMESTAMP'))
             ->addColumn('edited', 'boolean', array('default' => false))
             ->addColumn('status', 'integer', array('default' => 0, 'limit' => MysqlAdapter::INT_TINY)) //0 - Waiting moderate, 1 - Accepted, 2 - Rejected

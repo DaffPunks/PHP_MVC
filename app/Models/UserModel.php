@@ -30,5 +30,24 @@ class UserModel
         return $token;
     }
 
+    static function createAdmin($login, $password){
+        $salt = Auth::generateSalt();
+
+        $saltedPassword = Auth::generatePassword($password, $salt);
+
+        $token = Auth::generateToken();
+
+        $user = new User();
+        $user->setName($login);
+        $user->setPassword($saltedPassword);
+        $user->setPasswordSalt($salt);
+        $user->setToken($token);
+        $user->setIsAdmin(true);
+
+        $em = ORM::getEntityManager();
+        $em->persist($user);
+        $em->flush();
+    }
+
 
 }

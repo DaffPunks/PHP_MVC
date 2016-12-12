@@ -3,16 +3,29 @@
 }
 
 .feedback {
-  margin-bottom: 20px;
+  margin: 20px 0;
   padding: 10px;
+  border: solid #999 1px;
+  border-radius: 5px;
 
-  &-image {
-    background-color: #aaa;
-    width: 320px;
-    height: 240px;
+  &-example {
+    background-color: #fff9d4;
   }
 }
 
-.btn {
-  margin-left: 5px;
+.btn-preview {
+  margin-right: 5px;
+}
+
+.feedback-accepted {
+  color: #01a252;
+}
+
+.feedback-rejected {
+  color: #9d1e15;
+}
+
+.feedback-admined {
+  font-size: 10px;
+  color: #888;
 }

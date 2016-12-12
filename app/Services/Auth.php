@@ -1,5 +1,8 @@
 <?php
 
+/** Authentication Service Facade
+ *  Contain all AA logic
+ */
 class Auth
 {
 

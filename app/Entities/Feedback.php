@@ -18,6 +18,9 @@ class Feedback
     /** @Column (type="text") * */
     protected $text;
 
+    /** @Column (type="string") * */
+    protected $image;
+
     /** @Column (type="datetime") * */
     protected $created;
 
@@ -50,6 +53,16 @@ class Feedback
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
     public function getText()

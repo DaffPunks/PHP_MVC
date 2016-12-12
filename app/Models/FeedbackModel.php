@@ -3,7 +3,7 @@
 class FeedbackModel
 {
 
-    function getAll($orderCol = "created", $sorting = "DESC")
+    public static function getAll($orderCol = "created", $sorting = "DESC")
     {
 
         $availableSorting = ["ASC", "DESC"];
@@ -22,23 +22,58 @@ class FeedbackModel
         return $feeds;
     }
 
-    function getById($id)
+    public static function updateStatus($id, $status)
+    {
+        $entityManager = ORM::getEntityManager();
+
+        $feed = FeedbackModel::getById($id);
+        $feed->setStatus($status);
+
+        $entityManager->flush();
+    }
+
+    public static function createFeedback($name, $email, $text, $image) {
+        $entityManager = ORM::getEntityManager();
+
+
+        $feedback = new Feedback();
+        $feedback->setName($name);
+        $feedback->setEmail($email);
+        $feedback->setText(nl2br($text));
+
+        if(!empty($image["size"])) {
+            $feedback->setImage($image["name"]);
+
+            $new_image = new ImageService($image["tmp_name"]);
+            $new_image->autoimageresize(320, 240);
+            $new_image->imagesave("storage/image/" . $image["name"]);
+            $new_image->imageout();
+        }
+
+        $entityManager->persist($feedback);
+        $entityManager->flush();
+    }
+
+    public static function editFeedback($id, $name, $email, $text) {
+        $entityManager = ORM::getEntityManager();
+
+        $feedbackModel = new FeedbackModel();
+        $feedback = $feedbackModel->getById($id);
+
+        $feedback->setName($name);
+        $feedback->setEmail($email);
+        $feedback->setText(nl2br($text));
+        $feedback->setEdited(true);
+
+        $entityManager->flush();
+    }
+
+    private static function getById($id)
     {
         $entityManager = ORM::getEntityManager();
         $feedback = $entityManager->getRepository('Feedback')->findOneBy(array("id" => $id));;
 
         return $feedback;
     }
-
-    function updateStatus($id, $status)
-    {
-        $entityManager = ORM::getEntityManager();
-
-        $feed = $this->getById($id);
-        $feed->setStatus($status);
-
-        $entityManager->flush();
-    }
-
 
 }

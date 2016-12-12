@@ -2,25 +2,31 @@
 
 class FeedbacksController extends Controller
 {
+    /** Create Feedback */
     function create()
     {
+        if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['text'])) {
+            echo "Поля не заполнены";
+            die();
+        }
 
-        $entityManager = ORM::getEntityManager();
-
-        $feedback = new Feedback();
-        $feedback->setName($_POST['name']);
-        $feedback->setEmail($_POST['email']);
-        $feedback->setText(nl2br($_POST['text']));
-
-        $entityManager->persist($feedback);
-        $entityManager->flush();
+        FeedbackModel::createFeedback($_POST['name'], $_POST['email'], $_POST['text'], $_FILES["image"]);
 
         $this->redirect('/');
     }
 
+    /** Edit Feedback */
+    function edit()
+    {
+        FeedbackModel::editFeedback($_GET['id'], $_POST['name'], $_POST['email'], $_POST['text']);
+
+        $this->redirect('/');
+    }
+
+    /** Accept Feedback by Admin */
     function accept()
     {
-        if(Auth::isAdmin()) {
+        if (Auth::isAdmin()) {
             $this->setStatus(1);
             $this->redirect('/');
         } else {
@@ -28,9 +34,10 @@ class FeedbacksController extends Controller
         }
     }
 
+    /** Reject Feedback by Admin */
     function reject()
     {
-        if(Auth::isAdmin()) {
+        if (Auth::isAdmin()) {
             $this->setStatus(2);
             $this->redirect('/');
         } else {
@@ -38,6 +45,7 @@ class FeedbacksController extends Controller
         }
     }
 
+    /** Set feedback status */
     private function setStatus($status)
     {
         if (isset($_GET['id'])) {
@@ -47,8 +55,8 @@ class FeedbacksController extends Controller
             die();
         }
 
-        $feedbackModel = new FeedbackModel();
-        $feedbackModel->updateStatus($id, $status);
+        FeedbackModel::updateStatus($id, $status);
     }
+
 
 }

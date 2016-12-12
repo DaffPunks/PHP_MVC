@@ -7,15 +7,19 @@ $secondaryBlue: #1cbddd;
 $white: #ffffff;
 
 body {
-
+  margin-bottom: 100px;
 }
 
 a {
-  margin-left: 5px;
+  cursor: pointer;
   text-decoration: none;
   &:hover {
     color: $primaryGrey;
   }
+}
+
+h3 {
+  margin: 0;
 }
 
 ul {

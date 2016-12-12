@@ -1,7 +1,7 @@
 <?php
 // bootstrap.php
-require_once "../vendor/autoload.php";
-require_once '../config/config.php';
+require_once "vendor/autoload.php";
+require_once 'config/config.php';
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;

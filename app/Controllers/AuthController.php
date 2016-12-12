@@ -2,12 +2,13 @@
 
 class AuthController extends Controller
 {
-
+    /** Registration Page */
     function registerView()
     {
         $this->view("registration_view");
     }
 
+    /** Register user (now its Admin)*/
     function register()
     {
 
@@ -35,24 +36,7 @@ class AuthController extends Controller
 
         if (count($err) == 0) {
 
-            $login = $_POST['login'];
-
-            $salt = Auth::generateSalt();
-
-            $password = Auth::generatePassword($_POST['password'], $salt);
-
-            $token = Auth::generateToken();
-
-            $user = new User();
-            $user->setName($login);
-            $user->setPassword($password);
-            $user->setPasswordSalt($salt);
-            $user->setToken($token);
-            $user->setIsAdmin(true);
-
-            $em = ORM::getEntityManager();
-            $em->persist($user);
-            $em->flush();
+            UserModel::createAdmin($_POST['login'], $_POST['password']);
 
             $this->redirect("/");
 
@@ -64,11 +48,13 @@ class AuthController extends Controller
 
     }
 
+    /** Login Page */
     function loginView()
     {
         $this->view("login_view");
     }
 
+    /** Authenticate into system */
     function login()
     {
 
@@ -107,6 +93,7 @@ class AuthController extends Controller
 
     }
 
+    /** Logout */
     function logout()
     {
         Auth::logout();

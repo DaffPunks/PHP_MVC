@@ -3,10 +3,9 @@
 class MainController extends Controller
 {
 
+    /** Main page */
     function index()
     {
-        $feedModel = new FeedbackModel();
-
         $orderCol = "created";
         $sort = "desc";
 
@@ -17,7 +16,7 @@ class MainController extends Controller
             $sort = $_GET['sort'];
         }
 
-        $data = $feedModel->getAll($orderCol, $sort);
+        $data = FeedbackModel::getAll($orderCol, $sort);
 
 
         //$this->view->generate('services_view.php', 'template_view.php', $data);

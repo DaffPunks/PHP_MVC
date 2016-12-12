@@ -11,13 +11,16 @@
 </head>
 <body>
 <nav id="navbar navbar-static-top">
-    <div class="container flex-right">
-        <?php if(Auth::isAuth()) {?>
-            <?=Auth::getUserName() ?>
-            <a href="/logout">Logout</a>
-        <?php } else {?>
-            <a href="/login">Login</a>
-        <?php }?>
+    <div class="container">
+        <div class="pull-left"><a class="navbar-logo" href="/">Отзывы</a></div>
+        <div class="pull-right">
+            <?php if (Auth::isAuth()) { ?>
+                <?= Auth::getUserName() ?>&nbsp;
+                <a href="/logout">Logout</a>
+            <?php } else { ?>
+                <a href="/login">Login</a>
+            <?php } ?>
+        </div>
     </div>
 </nav>
 <section id="form">
