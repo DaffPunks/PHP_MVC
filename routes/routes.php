@@ -1,6 +1,6 @@
 <?php
 
-require_once '../app/core/route.php';
+require_once '../app/Core/route.php';
 
 $route = Route::getInstance();
 
