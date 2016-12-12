@@ -1,0 +1,11 @@
+{
+    "name": "daffpunks/phpmvc",
+    "description": "My own PHP MVC",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "robmorgan/phinx": "^0.6.5",
+        "doctrine/orm": "*"
+    }
+}

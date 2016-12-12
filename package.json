@@ -1,0 +1,24 @@
+{
+  "name": "BeeJee",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "typed": "^0.3.3",
+    "typed.js": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015": "^6.18.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-sass": "^2.3.2"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  }
+}

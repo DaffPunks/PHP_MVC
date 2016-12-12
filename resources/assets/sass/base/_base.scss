@@ -1,0 +1,26 @@
+@import "normalize";
+
+$primaryDarkBlue: #1c3c50;
+$primaryRed: #ff4148;
+$primaryGrey: #d7dbdc;
+$secondaryBlue: #1cbddd;
+$white: #ffffff;
+
+body {
+
+}
+
+a {
+  margin-left: 5px;
+  text-decoration: none;
+  &:hover {
+    color: $primaryGrey;
+  }
+}
+
+ul {
+  list-style: none;
+  li {
+    display: inline-block;
+  }
+}
