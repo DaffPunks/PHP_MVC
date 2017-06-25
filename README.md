@@ -5,7 +5,7 @@
 Migration tool: [Phinx](https://phinx.org/)
 
 ORM: [Doctrine2](http://www.doctrine-project.org/)
-##Installation
+## Installation
 ```
 composer install
 npm install
